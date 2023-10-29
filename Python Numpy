@@ -1,0 +1,42 @@
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Generate random data
+np.random.seed(0)  # Set a random seed for reproducibility
+data = np.random.randn(1000)  # Generate 1000 random numbers from a standard normal distribution
+
+# Basic statistics
+mean = np.mean(data)
+std_dev = np.std(data)
+max_value = np.max(data)
+min_value = np.min(data)
+
+print("Mean:", mean)
+print("Standard Deviation:", std_dev)
+print("Max Value:", max_value)
+print("Min Value:", min_value)
+
+# Data manipulation
+data_squared = np.square(data)
+data_filtered = data[data > 0]  # Select only positive values
+
+# Visualization
+plt.figure(figsize=(12, 4))
+
+# Histogram
+plt.subplot(1, 3, 1)
+plt.hist(data, bins=30, color='skyblue', edgecolor='black')
+plt.title('Histogram')
+
+# Scatter plot of squared data
+plt.subplot(1, 3, 2)
+plt.scatter(data, data_squared, color='green', marker='.', alpha=0.5)
+plt.title('Scatter Plot (Squared Data)')
+
+# Scatter plot of filtered data
+plt.subplot(1, 3, 3)
+plt.scatter(data, data_filtered, color='red', marker='.', alpha=0.5)
+plt.title('Scatter Plot (Positive Values)')
+
+plt.tight_layout()
+plt.show()
