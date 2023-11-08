@@ -1,0 +1,27 @@
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Load the Iris dataset
+iris_data = pd.read_csv('iris.csv')
+
+# Separate the features and target
+features = iris_data[['sepal_length', 'sepal_width', 'petal_length', 'petal_width']]
+target = iris_data['species']
+
+# Standardize the features
+features_standardized = (features - features.mean()) / features.std()
+
+# Perform principal component analysis (PCA)
+pca = PCA(n_components=2)  # Choose the number of principal components you want to keep
+pca.fit(features_standardized)
+
+# Transform the data to the principal component space
+features_pca = pca.transform(features_standardized)
+
+# Create a scatter plot of the first two principal components
+plt.scatter(features_pca[:, 0], features_pca[:, 1], c=target)
+plt.xlabel('Principal Component 1')
+plt.ylabel('Principal Component 2')
+plt.title('Iris dataset projected onto the first two principal components')
+plt.show()
