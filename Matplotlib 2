@@ -1,0 +1,52 @@
+import seaborn as sns
+import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
+from sklearn.datasets import load_boston
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LinearRegression
+
+# Load the Boston Housing dataset
+boston = load_boston()
+boston_df = pd.DataFrame(boston.data, columns=boston.feature_names)
+boston_df['PRICE'] = boston.target
+
+# Split the data into features and target variable
+X = boston_df.drop('PRICE', axis=1)
+y = boston_df['PRICE']
+
+# Split the data into training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# Fit a linear regression model
+lm = LinearRegression()
+lm.fit(X_train, y_train)
+
+# Predict prices on the test set
+y_pred = lm.predict(X_test)
+
+# Create a scatter plot of predicted vs actual prices
+plt.figure(figsize=(12, 6))
+sns.scatterplot(x=y_test, y=y_pred)
+plt.title('Actual Prices vs Predicted Prices')
+plt.xlabel('Actual Prices')
+plt.ylabel('Predicted Prices')
+
+# Display a regression line on the scatter plot
+sns.regplot(x=y_test, y=y_pred, scatter=False, color='red')
+
+# Create a residual plot
+plt.figure(figsize=(12, 6))
+sns.residplot(x=y_pred, y=(y_test - y_pred))
+plt.title('Residual Plot')
+plt.xlabel('Fitted Values')
+plt.ylabel('Residuals')
+
+# Display distribution of prices
+plt.figure(figsize=(12, 6))
+sns.histplot(y_test - y_pred, kde=True)
+plt.title('Distribution of Residuals')
+plt.xlabel('Residuals')
+
+# Show all the plots
+plt.show()
