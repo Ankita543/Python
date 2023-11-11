@@ -1,0 +1,24 @@
+import seaborn as sns
+import matplotlib.pyplot as plt
+import pandas as pd
+
+# Load a sample dataset
+tips = sns.load_dataset("tips")
+
+# Create a grid of subplots
+fig, axes = plt.subplots(nrows=2, ncols=2, figsize=(12, 8))
+
+# Scatter plot with regression line
+sns.regplot(x="total_bill", y="tip", data=tips, ax=axes[0, 0])
+axes[0, 0].set_title('Scatter plot with Regression Line')
+
+# Box plot of tips by day
+sns.boxplot(x="day", y="tip", data=tips, ax=axes[0, 1])
+axes[0, 1].set_title('Box plot of Tips by Day')
+
+# Violin plot of total bill by time and sex
+sns.violinplot(x="time", y="total_bill", hue="sex", data=tips, split=True, ax=axes[1, 0])
+axes[1, 0].set_title('Violin plot of Total Bill by Time and Sex')
+
+# Bar plot of average total bill by day
+sns.barplot(x="day", y="total_bill", data=tips, ax=axes[1, 
