@@ -1,0 +1,16 @@
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+# Create a sample dataset
+tips = sns.load_dataset("tips")
+
+# Create a histogram using Seaborn
+sns.histplot(data=tips, x="total_bill", bins=10, kde=True, color='skyblue')
+
+# Add labels and title
+plt.xlabel("Total Bill")
+plt.ylabel("Frequency")
+plt.title("Histogram of Total Bill")
+
+# Show the plot
+plt.show()
