@@ -1,0 +1,29 @@
+# Import necessary libraries
+import pandas as pd
+import numpy as np
+from sklearn.model_selection import train_test_split
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import accuracy_score, classification_report
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+# Load Iris dataset
+iris = sns.load_dataset('iris')
+
+# Display the first few rows of the dataset
+print("First few rows of the Iris dataset:")
+print(iris.head())
+
+# Explore the data with pair plots
+sns.pairplot(iris, hue='species', diag_kind='hist')
+plt.show()
+
+# Data preprocessing and feature engineering
+X = iris.drop('species', axis=1)
+y = iris['species']
+
+# Split the data into training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# Train a Random Forest classifier
+clf = RandomForestClassifier(n_estimators
