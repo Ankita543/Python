@@ -1,0 +1,19 @@
+import datetime
+
+def get_user_input():
+    weight_unit = input("Enter weight unit (kg/lbs): ").lower()
+    height_unit = input("Enter height unit (m/inches): ").lower()
+
+    if weight_unit not in ["kg", "lbs"] or height_unit not in ["m", "inches"]:
+        print("Invalid units. Please use 'kg' or 'lbs' for weight and 'm' or 'inches' for height.")
+        return get_user_input()
+
+    weight = float(input(f"Enter your weight in {weight_unit}: "))
+    height = float(input(f"Enter your height in {height_unit}: "))
+
+    return weight, height, weight_unit, height_unit
+
+def calculate_bmi(weight, height, weight_unit, height_unit):
+    # Conversion to metric units if necessary
+    if weight_unit == "lbs":
+        weight /= 2.20462
