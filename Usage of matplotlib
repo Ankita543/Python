@@ -1,0 +1,25 @@
+import matplotlib.pyplot as plt
+import numpy as np
+
+# Generate sample data
+np.random.seed(42)
+x1 = np.random.rand(20) * 10
+y1 = x1 + np.random.randn(20)
+
+x2 = np.random.rand(20) * 10
+y2 = -x2 + np.random.randn(20)
+
+# Create a scatter plot with different markers and colors
+plt.scatter(x1, y1, label='Data Series 1', color='blue', marker='o')
+plt.scatter(x2, y2, label='Data Series 2', color='green', marker='s')
+
+# Adding labels and title
+plt.xlabel('X-axis')
+plt.ylabel('Y-axis')
+plt.title('Complex Matplotlib Example - Scatter Plot')
+
+# Adding a legend
+plt.legend()
+
+# Display the plot
+plt.show()
